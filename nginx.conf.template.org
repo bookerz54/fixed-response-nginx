@@ -1,0 +1,16 @@
+server {
+    listen       ${LISTEN_PORT};
+    server_name  ${SERVER_NAME};
+    root         /var/www/html;
+
+    location = /healthcheck {
+        empty_gif;
+        break;
+    }
+
+    location / {
+        default_type application/json;
+        return 200 '{"status": "ok", "server_name": "${SERVER_NAME}"}';
+    }
+}
+
